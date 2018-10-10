@@ -1,0 +1,50 @@
+<div style="text-align:center">
+  <h1>
+    {{ title }}!
+  </h1>
+
+</div>
+<h2>Enter Flight Details to Search </h2>
+<ul>
+  <form #form1=ngForm>
+    <div>
+      <h2>Flight Number:
+        <input name="flightNumber" placeholder="Flight Number" type="text" [(ngModel)]="flightNumber" required/>
+      </h2>
+    </div>
+  </form>
+  <form #form2=ngForm>
+    <div>
+      <h2>Origin:
+        <input name="origin" type="text" [(ngModel)]="origin" required/>
+      </h2>
+      <h2>Destination:
+        <input name="destination" type="text" [(ngModel)]="destination" required/>
+      </h2>
+    </div>
+  </form>
+  <form #form3=ngForm>
+    <div>
+      <h2>Date:
+        <input name="dateOfJrny" type="Date" [(ngModel)]="dateOfJrny" required/>
+      </h2>
+    </div>
+  </form>
+  <button type="button" (click)="((form1.valid || form2.valid)&&form3.valid)?search():setMessage('invalid data')">Search</button>
+</ul>
+<table *ngIf="flightDetails">
+  <tr>
+    <th>Flight Number</th>
+    <th>Career</th>
+    <th>Origin</th>
+    <th>Destination</th>
+    <th>Travel Time</th>
+  </tr>
+  <tr *ngFor="let item of flightDetails">
+    <td>{{item.flightNumber}}</td>
+    <td>{{item.carrier}}</td>
+    <td>{{item.origin}}</td>
+    <td>{{item.destination}}</td>
+    <td>{{item.travelTime}}</td>
+  </tr>
+</table>
